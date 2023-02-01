@@ -4,8 +4,8 @@ class Polynomial:
 
     __slots__ = ['__coef']
 
-    def __init__(self, *args):
-
+    def __init__(self, *arg):
+        args = deepcopy(arg)
         if args is None or len(args) == 0:      #just in case 
             self.__coef = [1] 
 
@@ -110,6 +110,11 @@ class Polynomial:
         return self
 
     def __mul__(poly_1, poly_2):
+
+        if isinstance(poly_1, float) or isinstance(poly_1, int):
+            poly_1 = Polynomial(poly_1)
+        if isinstance(poly_2, float) or isinstance(poly_2, int):
+            poly_2 = Polynomial(poly_2)
         result = [0]*(poly_1.len+poly_2.len-1)
 
         for poly_1_power, poly_1_coef in enumerate(poly_1.__coef):
@@ -123,7 +128,8 @@ class Polynomial:
     @property 
     def coefficients(self):
         cf = deepcopy(self.__coef)
-        return cf.reverse()
+        cf.reverse()
+        return cf
 
     @property 
     def len(self):
