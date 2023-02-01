@@ -15,14 +15,14 @@ class Polynomial:
                 self.__coef = args[0]
 
             elif isinstance(args[0], Polynomial):   #suport for Polynomial(Polynomial)
-                pass
+                self.__coef = args[0].get_coefficients() 
 
         elif len(args) > 1:
             self.__coef = []
             for i in args: self.__coef.append(args)
 
     def __str__(self):
-        print(self.__coef)
+        return str(self.__coef)    #just for now
 
     def __call__(self):
         pass
@@ -44,6 +44,11 @@ class Polynomial:
 
     def __mul__(poly_1, poly_2):
         pass
+
+    def get_coefficients(self):
+        return deepcopy(self.__coef)
+
+
 
 
 
